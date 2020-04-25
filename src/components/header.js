@@ -1,6 +1,17 @@
 import React, { Component } from 'react'
 
 export class header extends Component {
+
+    state = {
+      on: true,
+    }
+
+    toggle = () => {
+      this.setState({
+        on: !this.state.on
+      })
+    }
+
     render() {
         return (
           <nav className="navbar navbar-expand-md navbar-light">
@@ -10,6 +21,7 @@ export class header extends Component {
           <div className="collapse navbar-collapse" id="myNavbar">
             <div className="container-fluid">
               <div className="row">
+                {this.state.on && 
                 <div className="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">	
                   <div className="bottom-boder pb-3 ">
                     <button type="button" className="btn btn-round btn-light">
@@ -29,17 +41,17 @@ export class header extends Component {
                     <li className="nav-item"><a href="#" className="nav-link text-dark p-3 mb-2 sidebar-link"><i className="fas fa-caret-square-down text-muted fa-lg mr-3"></i>Other contacts</a></li>
                   </ul>
                 </div>
-                
+                }
                 <div className="col-xl-12 col-lg-12 col-md-12 ml-auto fixed-top py-2 top-navbar">
                   <div className="row align-items-center">
                     <div className="col-md-2 toggle">                                
-                       <a href="#" className="nav-link"><i className="fa fa-bars text-muted fa-lg"></i></a>
+                       <a href="#" className="nav-link" onClick={this.toggle}><i className="fa fa-bars text-muted fa-lg"></i></a>
                        <a href="#" className="user-profile"><img src="img/contacts.png" alt=""/><span className="size">Contacts</span></a>                               
                     </div>
                     <div className="col-md-5">
                       <form>
                         <div className="input-group">
-                          <input type="text" className="form-control search-input" placeholder="Search..."/>
+                          <input type="text" className="form-control search-input" onChange={this.onchange} placeholder="Search..."/>
                           <button type="button" className="btn btn-light search-button"><i className="fas fa-search text-danger"></i></button>    									
                         </div>
                       </form>
