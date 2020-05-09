@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
+import Dropdown from './dropdown'
 
+const items = [
+  {
+    id: 1,
+    value: 'Create label'
+  },
+]
 export class header extends Component {
 
     state = {
@@ -33,8 +40,7 @@ export class header extends Component {
                     <li className="nav-item"><a href="#" className="nav-link text-dark p-3 mb-2 current"><i className="fas fa-user text-muted fa-lg mr-3"></i>Contacts</a></li>
                     <li className="nav-item"><a href="#" className="nav-link text-dark p-3 mb-2 sidebar-link"><i className="fas fa-history text-muted fa-lg mr-3"></i>Frequently contacted</a></li>
                     <li className="nav-item"><a href="#" className="nav-link text-dark p-3 mb-2 sidebar-link"><i className="fas fa-plus-square text-muted fa-lg mr-3"></i>Merge&fix</a></li>
-                    <li className="nav-item"><a href="#" className="nav-link text-dark p-3 mb-2 sidebar-link"><i className="fas fa-chevron-up text-muted fa-lg mr-3"></i>Labels</a></li>
-                    <li className="nav-item"><a href="#" className="nav-link text-dark p-3 mb-2 sidebar-link"><i className="fas fa-plus text-muted fa-lg mr-3"></i>Create label</a></li>
+                    <Dropdown items={items}/>
                     <li className="nav-item"><a href="#" className="nav-link text-dark p-3 mb-2 sidebar-link"><i className="fas fa-upload text-muted fa-lg mr-3"></i>Import</a></li>
                     <li className="nav-item"><a href="#" className="nav-link text-dark p-3 mb-2 sidebar-link"><i className="fas fa-download text-muted fa-lg mr-3"></i>Export</a></li>
                     <li className="nav-item"><a href="#" className="nav-link text-dark p-3 mb-2 sidebar-link"><i className="fas fa-print text-muted fa-lg mr-3"></i>Print</a></li>
@@ -44,18 +50,11 @@ export class header extends Component {
                 }
                 <div className="col-xl-12 col-lg-12 col-md-12 ml-auto fixed-top py-2 top-navbar">
                   <div className="row align-items-center">
-                    <div className="col-md-2 toggle">                                
+                    <div className="col-md-7 toggle">                                
                        <a href="#" className="nav-link" onClick={this.toggle}><i className="fa fa-bars text-muted fa-lg"></i></a>
                        <a href="#" className="user-profile"><img src="img/contacts.png" alt=""/><span className="size">Contacts</span></a>                               
                     </div>
-                    <div className="col-md-5">
-                      <form>
-                        <div className="input-group">
-                          <input type="text" className="form-control search-input" onChange={this.onchange} placeholder="Search..."/>
-                          <button type="button" className="btn btn-light search-button"><i className="fas fa-search text-danger"></i></button>    									
-                        </div>
-                      </form>
-                    </div>
+                    
                     <div className="col-md-5 ">
                       <ul className="navbar-nav navbar-right">
                         <li className="nav-item icon-parent">

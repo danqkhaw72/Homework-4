@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 
+function searchingFor(term) {
+	return function(x) {
+		return x.name.toLowerCase().includes(term.toLowerCase()) || !term;
+	}
+}
 export class contents extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			products : [
+			people : [
 				{
+					id: 1,
 					name : 'Job',
 					email : '',
 					phone : '0123456789',
@@ -15,6 +21,7 @@ export class contents extends Component {
 					status : true
 				},
 				{
+					id: 2,
 					name : 'Anna',
 					email : '',
 					phone : '01486842578',
@@ -23,22 +30,25 @@ export class contents extends Component {
 					status : true
 				},
 				{
+					id: 3,
 					name : 'Zoe',
 					email : 'fgh@email.com',
 					phone : '01653075698',
 					job : 'Dev',
-					labels : 'DTDT,DT',
+					labels : 'DTDT',
 					status : true
 				},
 				{
+					id: 4,
 					name : 'Marry',
 					email : '',
 					phone : '06842586942',
 					job : '',
-					labels : 'DTDT,DT',
+					labels : 'DTDT',
 					status : true
 				},
 				{
+					id: 5,
 					name : 'Henry',
 					email : 'abc@gmail.com',
 					phone : '01659257454',
@@ -47,6 +57,7 @@ export class contents extends Component {
 					status : true
 				},
 				{
+					id: 6,
 					name : 'Julia',
 					email : '',
 					phone : '05692482542',
@@ -55,6 +66,7 @@ export class contents extends Component {
 					status : true
 				},
 				{
+					id: 7,
 					name : "Maria",
 					email : '',
 					phone : '0358625926',
@@ -63,13 +75,21 @@ export class contents extends Component {
 					status : true
 				}
 			],
+			term: '',
 			isActive : true
 		};
+
+		this.searchHandler = this.searchHandler.bind(this);
+	}
+
+	searchHandler(event) {
+		this.setState({term: event.target.value})
 	}
 
     render() {
-		
-		let elements = this.state.products.map((product, index) => {
+
+		const {term, people} = this.state;
+		let elements = people.filter(searchingFor(this.state.term)).map((product, index) => {
 			let result = '';
 			if(product.status) {
 				result = <tr>
@@ -90,6 +110,12 @@ export class contents extends Component {
     			<div className="col-xl-10 col-lg-9 col-md-8 ml-auto">
     				<div className="row align-items-center pt-5 mt-3">
     					<div className="col-12 mb-4 mb-xl-0 x-content">
+						<form>
+                        <div className="input-group">
+                          <input type="text" className="form-control search-input" onChange={this.searchHandler} value={term} placeholder="Search..."/>
+                          <button type="button" className="btn btn-light search-button"><i className="fas fa-search text-danger"></i></button>    									
+                        </div>
+                      </form>
     						<table className="table table-hover bg-light table-responsive-sm">
     							<thead>
     								<tr className="text-muted">
